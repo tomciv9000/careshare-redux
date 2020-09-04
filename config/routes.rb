@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sleeps
   resources :foods
   resources :diapers
   resources :children
