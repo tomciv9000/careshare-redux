@@ -3,7 +3,7 @@ class CreateChildren < ActiveRecord::Migration[6.0]
     create_table :children do |t|
       t.string :name
       t.date :birthday
-      t.int :user_id
+      t.integer :user_id
 
       t.timestamps
     end

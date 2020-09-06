@@ -4,7 +4,7 @@ class CreateDiapers < ActiveRecord::Migration[6.0]
       t.boolean :wet
       t.boolean :soiled
       t.time :time
-      t.int :shift_id
+      t.integer :shift_id
 
       t.timestamps
     end
