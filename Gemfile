@@ -20,7 +20,7 @@ gem 'knock'
 
 gem 'fast_jsonapi'
 
-gem 'jwt'
+
 
 gem 'rack-cors'
 
