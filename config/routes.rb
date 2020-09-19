@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
   scope '/api' do
     post 'user_token' => 'user_token#create'
     resources :notes
