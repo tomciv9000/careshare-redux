@@ -16,7 +16,7 @@ gem 'puma', '~> 4.1'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'knock'
+
 
 gem 'fast_jsonapi'
 
