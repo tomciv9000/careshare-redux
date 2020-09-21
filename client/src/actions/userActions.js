@@ -1,9 +1,9 @@
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "http://localhost:3000/api/v1"
 
 export const userPostFetch = user => {
   return dispatch => {
-    let loginData = {"user": {"email": user.email, "password": user.password}} 
-    return fetch(`${BASE_URL}/users`, {
+    let loginData = {"user": {"email": user.email, "password": user.password, "password_confirmation": user.passwordConfirm}} 
+    return fetch(`${BASE_URL}/auth/sign_up`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
