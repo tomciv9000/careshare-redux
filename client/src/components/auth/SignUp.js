@@ -21,7 +21,7 @@ export default function Signup() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
-  const [passwordConfirmed, setpasswordConfirmed] = useState(false)
+  const [passwordConfirmed, setPasswordConfirmed] = useState(false)
   const [formValid, setFormValid] = useState(false)
   const [errorMsg, setErrorMsg] = useState({})
 
@@ -108,10 +108,10 @@ export default function Signup() {
   
   return (
     <div className="Login">
-      <h3 className="white-text" id="account-login">Create Account</h3>
+      <h3  id="account-login">Create Account</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="large">
-          <Form.Label className="white-text">Email</Form.Label>
+          <Form.Label >Email</Form.Label>
           < ValidationMessage valid={emailValid} message={errorMsg.email} />
           <Form.Control
             autoFocus
@@ -123,7 +123,7 @@ export default function Signup() {
         </Form.Group>
 
         <Form.Group controlId="password" size="large">
-          <Form.Label className="white-text">Password</Form.Label>
+          <Form.Label >Password</Form.Label>
           < ValidationMessage valid={passwordValid} message={errorMsg.password} />
           <Form.Control
             value={password}
@@ -133,7 +133,7 @@ export default function Signup() {
         </Form.Group>
 
         <Form.Group controlId="passwordConfirm" size="large">
-          <Form.Label className="white-text">Confirm Password</Form.Label>
+          <Form.Label >Confirm Password</Form.Label>
           < ValidationMessage valid={passwordConfirmed} message={errorMsg.passwordConfirm} />
           <Form.Control
             value={password}

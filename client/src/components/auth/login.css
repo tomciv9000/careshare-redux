@@ -1,0 +1,33 @@
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+    }
+  
+    .Login form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+}
+
+@media all and (max-width: 479px) {
+    .Login {
+      padding: 60px 0;
+    }
+  
+    .Login form {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+}
+
+.white-text{
+  color: white;
+}
+
+#account-login{
+  text-align: center;
+}
+
+.error-msg{
+  color: red;
+}

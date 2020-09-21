@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch } from "react-router-dom";
 import './App.css';
 
-import Homepage from './components/Homepage'
+import HomePage from './components/HomePage'
 import { useDispatch } from 'react-redux'
 //import {getProfileFetch} from './actions/userActions';
-import Signup from './components/auth/Signup';
+import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
-import NavigationBar from './components/nav/NavigationBar';
+import NavigationBar from './components/NavBar';
 import { LandingPage } from './components/LandingPage';
 import AuthRoute from './components/auth/AuthRoute';
 //import PlaceShow from './components/PlaceShow'
@@ -34,11 +34,11 @@ const App = () => {
           </AuthRoute>
 
           <AuthRoute path="/signup" type="guest">
-            <Signup />
+            <SignUp />
           </AuthRoute>
 
           <AuthRoute path="/private" type="private">
-            <Homepage />
+            <HomePage />
           </AuthRoute>
 
           {/* <AuthRoute path="/places/:id" type="private" component = {PlaceShow}/>

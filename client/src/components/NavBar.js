@@ -45,7 +45,7 @@ class NavigationBar extends Component {
 
     return (
       <Navbar  bg= "dark" variant="dark" expand="lg">
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
           CareShare
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

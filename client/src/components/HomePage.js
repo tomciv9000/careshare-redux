@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../index.css';
 
-export const HomePage = () => {
+const HomePage = () => {
   
   return (
     <div>
@@ -11,3 +11,5 @@ export const HomePage = () => {
     </div>
   );
 }
+
+export default HomePage
