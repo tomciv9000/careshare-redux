@@ -29,7 +29,7 @@ export default function Signup() {
 
   const validateForm = () => {
     setFormValid(emailValid && passwordValid)
-    console.log(formValid)
+    
   }
 
   const handleSubmit = event => {
@@ -136,8 +136,8 @@ export default function Signup() {
           <Form.Label >Confirm Password</Form.Label>
           < ValidationMessage valid={passwordConfirmed} message={errorMsg.passwordConfirm} />
           <Form.Control
-            value={password}
-            onChange={(e) => updatePassword(e.target.value)}
+            value={passwordConfirm}
+            onChange={(e) => updatePasswordConfirm(e.target.value)}
             type="password"
           />
         </Form.Group>
