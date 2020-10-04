@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :shifts
+  
   namespace :api do
     scope :v1 do
       resources :food
