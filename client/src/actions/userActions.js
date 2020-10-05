@@ -17,13 +17,13 @@ export const newUserSignUp = user => {
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
-        return loginNewUser(user)
+        return signInNewUser(user)
       } else {
         throw Error(response.statusText);
       }
     })
     .then(returnedUser => {
-      dispatch(signInNewUser(returnedUser.data))
+      dispatch(loginUser(returnedUser.data))
     })
     .catch(error => console.error("SignUp Error:", error))
   }
@@ -54,7 +54,7 @@ const signInNewUser = user => {
 
 export const userLoginFetch = user => {
   return dispatch => {
-    let loginData = {"auth": {"email": user.email, "password": user.password}} 
+    let loginData = {"email": user.email, "password": user.password}
     return fetch(`${BASE_URL}/auth/sign_in`, {
       method: "POST",
       headers: {
@@ -71,20 +71,13 @@ export const userLoginFetch = user => {
       }
     })
     .then(data => {
-      console.log(data)
-      //localStorage.setItem("token", data.jwt)
-      //return getUser(user.email)
+      let returnedUserData = data.data
+      dispatch(loginUser(returnedUserData))
     })
     .catch(error => {
       console.log("Error Catch :", error.message)
         //dispatch(loginFail(error.message))
         //return undefined
-    })
-    .then(returnedData => {
-      if(returnedData){
-        console.log("User Object :", returnedData)
-        dispatch(loginUser(returnedData.user.data.attributes))
-      }    
     })
   }
 }
