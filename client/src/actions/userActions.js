@@ -13,20 +13,15 @@ export const userPostFetch = user => {
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
-        return response.json();
+        return loginNewUser(user)
       } else {
         throw Error(response.statusText);
       }
     })
-    .then(data => {
-        console.log("User SignUp Return Data:", {data})
-        console.log("Unique User:", data.data.uid, "User ID:", data.id)
-        return loginNewUser(user)
+    .then(returnedUser => {
+      dispatch(loginUser(returnedUser.data))
     })
     .catch(error => console.error("SignUp Error:", error))
-   // .then(returnedUser => {
-   //   dispatch(loginUser(returnedUser.user.data.attributes))
-   // })
   }
 }
 
@@ -55,9 +50,9 @@ const loginNewUser = user => {
       throw Error(response.statusText);
     }
   })
- .then(data => {
-     console.log("Login Return Data:", data)
- })
+//  .then(data => {
+//      console.log("Login Return Data:", data)
+//  })
  .catch(error => console.error(error));
 }
 
@@ -65,7 +60,7 @@ const loginNewUser = user => {
 export const userLoginFetch = user => {
   return dispatch => {
     let loginData = {"auth": {"email": user.email, "password": user.password}} 
-    fetch(`${BASE_URL}/user_token`, {
+    return fetch(`${BASE_URL}/auth/sign_in`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -82,13 +77,13 @@ export const userLoginFetch = user => {
     })
     .then(data => {
       console.log(data)
-      localStorage.setItem("token", data.jwt)
-      return getUser(user.email)
+      //localStorage.setItem("token", data.jwt)
+      //return getUser(user.email)
     })
     .catch(error => {
       console.log("Error Catch :", error.message)
-        dispatch(loginFail(error.message))
-        return undefined
+        //dispatch(loginFail(error.message))
+        //return undefined
     })
     .then(returnedData => {
       if(returnedData){
