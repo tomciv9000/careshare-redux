@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import {userPostFetch} from '../../actions/userActions';
+import {newUserSignUp} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
 import "./login.css";
@@ -40,7 +40,7 @@ export default function Signup() {
           passwordConfirm: passwordConfirm
       }
       console.log("Sign-Up User Data:", newUserObj) 
-      dispatch(userPostFetch(newUserObj))
+      dispatch(newUserSignUp(newUserObj))
       setEmail("")
       setPassword("")
       setPasswordConfirm("")

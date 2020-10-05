@@ -1,15 +1,19 @@
 const BASE_URL = "http://localhost:3000/api/v1"
 
-export const userPostFetch = user => {
+export const newUserSignUp = user => {
   return dispatch => {
-    let loginData = {"email": user.email, "password": user.password, "password_confirmation": user.passwordConfirm}
+    let signUpData = {
+      "email": user.email, 
+      "password": user.password, 
+      "password_confirmation": user.passwordConfirm
+    }
     return fetch(`${BASE_URL}/auth`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(loginData)
+      body: JSON.stringify(signUpData)
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -19,43 +23,34 @@ export const userPostFetch = user => {
       }
     })
     .then(returnedUser => {
-      dispatch(loginUser(returnedUser.data))
+      dispatch(signInNewUser(returnedUser.data))
     })
     .catch(error => console.error("SignUp Error:", error))
   }
 }
 
-
-const loginNewUser = user => {
-  console.log("User Login Params:", user)
-  let loginData = {"email": user.email, "password": user.password} 
+const signInNewUser = user => {
+  let userLoginData = {
+    "email": user.email,
+    "password": user.password
+  } 
   return fetch(`${BASE_URL}/auth/sign_in`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(loginData)
+    body: JSON.stringify(userLoginData)
   })
   .then((response) => {
-    //VARS THAT ACCESS THE HEADER VALUES
-    //const accessToken = response.headers.get('access-token')
-    //const client = response.headers.get('client')
-    //const expiry = response.headers.get('expiry')
-    //const uid = response.headers.get('uid')
-    //console.log(accessToken, client, expiry, uid)
     if (response.status >= 200 && response.status <= 299) {
       return response.json();
     } else {
       throw Error(response.statusText);
     }
   })
-//  .then(data => {
-//      console.log("Login Return Data:", data)
-//  })
- .catch(error => console.error(error));
+ .catch(error => console.error("New User SignIn Error:",error));
 }
-
 
 export const userLoginFetch = user => {
   return dispatch => {
