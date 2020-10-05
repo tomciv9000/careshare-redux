@@ -30,7 +30,7 @@ export const newUserSignUp = user => {
 }
 
 const signInNewUser = user => {
-  let userLoginData = {
+  let userSignInData = {
     "email": user.email,
     "password": user.password
   } 
@@ -40,7 +40,7 @@ const signInNewUser = user => {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify(userLoginData)
+    body: JSON.stringify(userSignInData)
   })
   .then((response) => {
     if (response.status >= 200 && response.status <= 299) {
@@ -52,16 +52,16 @@ const signInNewUser = user => {
  .catch(error => console.error("New User SignIn Error:",error));
 }
 
-export const userLoginFetch = user => {
+export const userSignIn = user => {
   return dispatch => {
-    let loginData = {"email": user.email, "password": user.password}
+    let userSignInData = {"email": user.email, "password": user.password}
     return fetch(`${BASE_URL}/auth/sign_in`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(loginData)
+      body: JSON.stringify(userSignInData)
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
