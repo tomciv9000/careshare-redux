@@ -39,7 +39,7 @@ export default function Signup() {
           password: password,
           passwordConfirm: passwordConfirm
       }
-      console.log(newUserObj) 
+      console.log("Sign-Up User Data:", newUserObj) 
       dispatch(userPostFetch(newUserObj))
       setEmail("")
       setPassword("")

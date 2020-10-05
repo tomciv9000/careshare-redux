@@ -11,15 +11,19 @@ export const userPostFetch = user => {
       },
       body: JSON.stringify(loginData)
     })
-    .then(resp => resp.json())
-    .then(data => {
-      if (data.message) {
-        console.log("Response Data Message:",data)
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
       } else {
-        console.log("No Data Message:", data)
-        return loginNewUser(user)
+        throw Error(response.statusText);
       }
     })
+    .then(data => {
+        console.log("User SignUp Return Data:", {data})
+        console.log("Unique User:", data.data.uid, "User ID:", data.id)
+        return loginNewUser(user)
+    })
+    .catch(error => console.error("SignUp Error:", error))
    // .then(returnedUser => {
    //   dispatch(loginUser(returnedUser.user.data.attributes))
    // })
@@ -28,7 +32,7 @@ export const userPostFetch = user => {
 
 
 const loginNewUser = user => {
-  console.log("User:", user)
+  console.log("User Login Params:", user)
   let loginData = {"email": user.email, "password": user.password} 
   return fetch(`${BASE_URL}/auth/sign_in`, {
     method: "POST",
@@ -38,16 +42,21 @@ const loginNewUser = user => {
     },
     body: JSON.stringify(loginData)
   })
-  .then(response => {
-    const accessToken = response.headers.get('access-token')
-    const client = response.headers.get('client')
-    const expiry = response.headers.get('expiry')
-    const uid = response.headers.get('uid')
-    console.log(accessToken, client, expiry, uid)
-    return (response.json());
- })
+  .then((response) => {
+    //VARS THAT ACCESS THE HEADER VALUES
+    //const accessToken = response.headers.get('access-token')
+    //const client = response.headers.get('client')
+    //const expiry = response.headers.get('expiry')
+    //const uid = response.headers.get('uid')
+    //console.log(accessToken, client, expiry, uid)
+    if (response.status >= 200 && response.status <= 299) {
+      return response.json();
+    } else {
+      throw Error(response.statusText);
+    }
+  })
  .then(data => {
-     console.log(data)
+     console.log("Login Return Data:", data)
  })
  .catch(error => console.error(error));
 }
