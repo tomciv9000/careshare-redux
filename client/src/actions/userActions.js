@@ -76,8 +76,8 @@ export const userSignIn = user => {
     })
     .catch(error => {
       console.log("Error Catch :", error.message)
-        //dispatch(loginFail(error.message))
-        //return undefined
+        dispatch(loginFail(error.message))
+        return undefined
     })
   }
 }
@@ -92,22 +92,6 @@ const loginFail = failObj => ({
   payload: failObj
 })
 
-const getUser = email => {
-  let loginData = {"user": {"email": email}}
-  return fetch(`${BASE_URL}/find_user`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.token}`,
-    },  
-    body: JSON.stringify(loginData)
-  })
-  .then(response => response.json())
-  .then(userJson => {return userJson})
-  .catch(error => {
-    return error;
-  });
-}
 
 export const getProfileFetch = () => {
   return dispatch => {
