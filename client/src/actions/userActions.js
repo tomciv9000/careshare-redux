@@ -2,8 +2,8 @@ const BASE_URL = "http://localhost:3000/api/v1"
 
 export const userPostFetch = user => {
   return dispatch => {
-    let loginData = {"user": {"email": user.email, "password": user.password, "password_confirmation": user.passwordConfirm}} 
-    return fetch(`${BASE_URL}/auth/sign_up`, {
+    let loginData = {"email": user.email, "password": user.password, "password_confirmation": user.passwordConfirm}
+    return fetch(`${BASE_URL}/auth`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -14,23 +14,23 @@ export const userPostFetch = user => {
     .then(resp => resp.json())
     .then(data => {
       if (data.message) {
-        console.log(data)
+        console.log("Response Data Message:",data)
       } else {
-        console.log(data)
+        console.log("No Data Message:", data)
         return loginNewUser(user)
       }
     })
-    .then(returnedUser => {
-      console.log(returnedUser)
-      dispatch(loginUser(returnedUser.user.data.attributes))
-    })
+   // .then(returnedUser => {
+   //   dispatch(loginUser(returnedUser.user.data.attributes))
+   // })
   }
 }
 
 
 const loginNewUser = user => {
-  let loginData = {"auth": {"email": user.email, "password": user.password}} 
-  return fetch(`${BASE_URL}/user_token`, {
+  console.log("User:", user)
+  let loginData = {"email": user.email, "password": user.password} 
+  return fetch(`${BASE_URL}/auth/sign_in`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -38,16 +38,20 @@ const loginNewUser = user => {
     },
     body: JSON.stringify(loginData)
   })
-  .then(resp => resp.json())
-  .then(data => {
-    console.log(data)
-    localStorage.setItem("token", data.jwt)
-    return getUser(user.email)
-  })
-  .catch(error => {
-    console.log(error)
-  })
+  .then(response => {
+    const accessToken = response.headers.get('access-token')
+    const client = response.headers.get('client')
+    const expiry = response.headers.get('expiry')
+    const uid = response.headers.get('uid')
+    console.log(accessToken, client, expiry, uid)
+    return (response.json());
+ })
+ .then(data => {
+     console.log(data)
+ })
+ .catch(error => console.error(error));
 }
+
 
 export const userLoginFetch = user => {
   return dispatch => {
