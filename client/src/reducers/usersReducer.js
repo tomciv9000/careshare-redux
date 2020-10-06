@@ -6,7 +6,7 @@ const initialState = {
   
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOGIN_USER':
+    case 'SIGNIN_USER':
       return {...state, 
         isAuthenticated: !!(Object.keys(action.payload).length),
         currentUser: action.payload,
@@ -18,7 +18,7 @@ export default function usersReducer(state = initialState, action) {
         isAuthenticated: false,
         currentUser: {},
         errors: '' }
-    case 'LOGIN_FAIL':
+    case 'SIGNIN_FAIL':
       return {...state, 
         isAuthenticated: false,
         currentUser: {},

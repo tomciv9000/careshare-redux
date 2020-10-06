@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import {newUserSignUp} from '../../actions/userActions';
+import {signUpRequest} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
 import "./login.css";
@@ -39,7 +39,7 @@ export default function Signup() {
           password: password,
           passwordConfirm: passwordConfirm
       }
-      dispatch(newUserSignUp(newUserObj))
+      dispatch(signUpRequest(newUserObj))
       setEmail("")
       setPassword("")
       setPasswordConfirm("")

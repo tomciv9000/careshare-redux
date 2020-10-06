@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3000/api/v1"
 
-export const newUserSignUp = user => {
+export const signUpRequest = user => {
   return dispatch => {
     let signUpData = {
       "email": user.email, 
@@ -23,7 +23,7 @@ export const newUserSignUp = user => {
       }
     })
     .then(returnedUser => {
-      dispatch(loginUser(returnedUser.data))
+      dispatch(signInUser(returnedUser.data))
     })
     .catch(error => console.error("SignUp Error:", error))
   }
@@ -52,7 +52,7 @@ const signInNewUser = user => {
  .catch(error => console.error("New User SignIn Error:",error));
 }
 
-export const userSignIn = user => {
+export const signInRequest = user => {
   return dispatch => {
     let userSignInData = {"email": user.email, "password": user.password}
     return fetch(`${BASE_URL}/auth/sign_in`, {
@@ -72,26 +72,25 @@ export const userSignIn = user => {
     })
     .then(data => {
       let returnedUserData = data.data
-      dispatch(loginUser(returnedUserData))
+      dispatch(signInUser(returnedUserData))
     })
     .catch(error => {
       console.log("Error Catch :", error.message)
-        dispatch(loginFail(error.message))
+        dispatch(signInFail(error.message))
         return undefined
     })
   }
 }
   
-const loginUser = userObj => ({
-  type: 'LOGIN_USER',
+const signInUser = userObj => ({
+  type: 'SIGNIN_USER',
   payload: userObj
 })
 
-const loginFail = failObj => ({
-  type: 'LOGIN_FAIL',
+const signInFail = failObj => ({
+  type: 'SIGNIN_FAIL',
   payload: failObj
 })
-
 
 export const getProfileFetch = () => {
   return dispatch => {
@@ -108,7 +107,7 @@ export const getProfileFetch = () => {
       .then(resp => resp.json())
       .then(data => {          
         if (data.user.data) {
-          dispatch(loginUser(data.user.data.attributes))
+          dispatch(signInUser(data.user.data.attributes))
         } else {
           console.log(data)
           localStorage.removeItem("token")
@@ -123,6 +122,6 @@ export const logoutUser = () => ({
   type: 'LOGOUT_USER'
 })
 
-export const noAuth = () => ({
-  type: 'NOAUTH_USER'
-})
+// export const noAuth = () => ({
+//   type: 'NOAUTH_USER'
+// })

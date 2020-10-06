@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
-import {userSignIn} from '../../actions/userActions';
+import {signInRequest} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
 import "./login.css";
@@ -27,7 +27,7 @@ export default function Login() {
         password: password
     }
      
-    dispatch(userSignIn(loginObj))
+    dispatch(signInRequest(loginObj))
     setEmail("")
     setPassword("")
   }
