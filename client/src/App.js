@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch } from "react-router-dom";
-import './App.css';
+
 
 import HomePage from './components/HomePage'
 import { useDispatch } from 'react-redux'

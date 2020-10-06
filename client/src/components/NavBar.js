@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-import { signOutUser } from '../../actions/userActions';
+import { signOutUser } from '../actions/userActions';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from "react-router-bootstrap"
@@ -15,17 +14,23 @@ class NavigationBar extends Component {
     // this.props.signOutUser()
   }
 
-  callUser = () => {
-    if (this.props.current_user){
-      return (<p>User: {this.props.current_user.email}</p>)
-    }else {
-      return (<p>Guest</p>)
-    }
-  }
+  // callUser = () => {
+  //   if (this.props.currentUser){
+  //     console.log("current user found", this.props.currentUser)
+  //     return (<p>User: {this.props.currentUser.email}</p>)
+  //   }else {
+  //     return (<p>Guest</p>)
+  //   }
+  // }
 
   render() {
     const userLinks = (
       <Nav>
+        <Nav.Item>
+      <Nav.Link eventKey="disabled" disabled>
+        Disabled
+      </Nav.Link>
+      </Nav.Item>
         <LinkContainer to="/">
         <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
         </LinkContainer>
@@ -44,13 +49,13 @@ class NavigationBar extends Component {
     )
 
     return (
-      <Navbar  bg= "dark" variant="dark" expand="lg">
+      <Navbar expand="md" bg="dark" variant="dark">
         <Navbar.Brand>
           CareShare
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          {this.props.auth ? userLinks : guestLinks}
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          {this.props.isAuthenticated ? userLinks : guestLinks}
         </Navbar.Collapse>
       </Navbar>
     );
@@ -59,8 +64,8 @@ class NavigationBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.user.isAuthenticated,
-    current_user: state.user.currentUser
+    isAuthenticated: state.user.isAuthenticated,
+    currentUser: state.user.currentUser
   };
 }
 
