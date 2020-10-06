@@ -13,7 +13,7 @@ export default function usersReducer(state = initialState, action) {
         errors: ''
   
       }
-    case 'LOGOUT_USER':
+    case 'SIGNOUT_USER':
       return {...state, 
         isAuthenticated: false,
         currentUser: {},

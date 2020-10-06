@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-//import { logoutUser } from '../../actions/userActions';
+import { signOutUser } from '../../actions/userActions';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from "react-router-bootstrap"
@@ -12,7 +12,7 @@ class NavigationBar extends Component {
       console.log("clicked")
     // event.preventDefault()
     // localStorage.removeItem("token")
-    // this.props.logoutUser()
+    // this.props.signOutUser()
   }
 
   callUser = () => {
@@ -64,8 +64,8 @@ const mapStateToProps = state => {
   };
 }
 
-// const mapDispatchToProps = dispatch => ({
-//     logoutUser: () => dispatch(logoutUser())
-// })
+const mapDispatchToProps = dispatch => ({
+    signOutUser: () => dispatch(signOutUser())
+})
 
-export default connect(mapStateToProps, null)(NavigationBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

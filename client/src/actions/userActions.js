@@ -111,15 +111,15 @@ export const getProfileFetch = () => {
         } else {
           console.log(data)
           localStorage.removeItem("token")
-          dispatch(logoutUser())
+          dispatch(signOutUser())
         }
       })
     }
   }
 }
 
-export const logoutUser = () => ({
-  type: 'LOGOUT_USER'
+export const signOutUser = () => ({
+  type: 'SIGNOUT_USER'
 })
 
 // export const noAuth = () => ({
