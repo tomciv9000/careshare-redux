@@ -26,11 +26,9 @@ class NavigationBar extends Component {
   render() {
     const userLinks = (
       <Nav>
-        <Nav.Item>
-      <Nav.Link eventKey="disabled" disabled>
-        Disabled
-      </Nav.Link>
-      </Nav.Item>
+        <Navbar.Text>
+          User: {this.props.currentUser.email}
+        </Navbar.Text>
         <LinkContainer to="/">
         <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
         </LinkContainer>
@@ -40,16 +38,16 @@ class NavigationBar extends Component {
     const guestLinks = (
       <Nav>
         <LinkContainer to="/signup">
-          <Nav.Link>Sign Up</Nav.Link>
+          <Nav.Link>Create Account</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/login">
-          <Nav.Link>Log in</Nav.Link>
+          <Nav.Link>Sign in</Nav.Link>
         </LinkContainer>
       </Nav>
     )
 
     return (
-      <Navbar expand="md" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Navbar.Brand>
           CareShare
         </Navbar.Brand>
