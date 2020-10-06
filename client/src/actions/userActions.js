@@ -65,11 +65,25 @@ export const signInRequest = user => {
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
+        console.log(response.headers.get("uid"))
+        console.log(response.headers.get("expiry"))
+        console.log(response.headers.get("access-token"))
+        console.log(response.headers.get("client"))
         return response.json();
       } else {
         throw Error(response.statusText);
       }
     })
+
+//     const contentType = response.headers.get('content-type');
+//     if (!contentType || !contentType.includes('application/json')) {
+//       throw new TypeError("Oops, we haven't got JSON!");
+//     }
+//     return response.json();
+//  })
+
+
+
     .then(data => {
       let returnedUserData = data.data
       dispatch(signInUser(returnedUserData))
@@ -82,6 +96,38 @@ export const signInRequest = user => {
   }
 }
   
+export const signOutRequest = () => {
+  return dispatch => {
+    //let userSignInData = {"email": user.email, "password": user.password}
+    return fetch(`${BASE_URL}/auth/sign_out`, {
+      method: "DELETE",
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   Accept: 'application/json',
+      // },
+      //body: JSON.stringify(userSignInData)
+    })
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    })
+    .then(data => {
+      console.log(data)
+      // let returnedUserData = data.data
+      // dispatch(signInUser(returnedUserData))
+    })
+    .catch(error => {
+      console.log("Error Catch :", error.message)
+        // dispatch(signInFail(error.message))
+        // return undefined
+    })
+  }
+}
+
+
 const signInUser = userObj => ({
   type: 'SIGNIN_USER',
   payload: userObj

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signOutUser } from '../actions/userActions';
+import { signOutRequest } from '../actions/userActions';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from "react-router-bootstrap"
@@ -8,26 +8,16 @@ import { LinkContainer } from "react-router-bootstrap"
 class NavigationBar extends Component {
 
   handleClick = event => {
-      console.log("clicked")
-    // event.preventDefault()
-    // localStorage.removeItem("token")
-    // this.props.signOutUser()
+    console.log("clicked")
+    event.preventDefault()
+    this.props.signOutRequest()
   }
-
-  // callUser = () => {
-  //   if (this.props.currentUser){
-  //     console.log("current user found", this.props.currentUser)
-  //     return (<p>User: {this.props.currentUser.email}</p>)
-  //   }else {
-  //     return (<p>Guest</p>)
-  //   }
-  // }
 
   render() {
     const userLinks = (
       <Nav>
         <Navbar.Text>
-          User: {this.props.currentUser.email}
+          Account: {this.props.currentUser.email}
         </Navbar.Text>
         <LinkContainer to="/">
         <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
@@ -52,7 +42,7 @@ class NavigationBar extends Component {
           CareShare
         </Navbar.Brand>
         <Navbar.Toggle />
-        <Navbar.Collapse>
+        <Navbar.Collapse className="justify-content-end">
           {this.props.isAuthenticated ? userLinks : guestLinks}
         </Navbar.Collapse>
       </Navbar>
@@ -68,7 +58,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    signOutUser: () => dispatch(signOutUser())
+    signOutRequest: () => dispatch(signOutRequest())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
