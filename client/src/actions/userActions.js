@@ -65,26 +65,22 @@ export const signInRequest = user => {
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
-        console.log(response.headers.get("uid"))
-        console.log(response.headers.get("expiry"))
-        console.log(response.headers.get("access-token"))
-        console.log(response.headers.get("client"))
+        sessionStorage.setItem('user',
+        JSON.stringify({
+        'access-token': response.headers.get("access-token"),
+                 client: response.headers.get("client"),
+                 uid: response.headers.get("uid"), 
+               }));
+        // console.log(response.headers.get("uid"))
+        // console.log(response.headers.get("access-token"))
+        // console.log(response.headers.get("client"))
         return response.json();
       } else {
         throw Error(response.statusText);
       }
     })
-
-//     const contentType = response.headers.get('content-type');
-//     if (!contentType || !contentType.includes('application/json')) {
-//       throw new TypeError("Oops, we haven't got JSON!");
-//     }
-//     return response.json();
-//  })
-
-
-
     .then(data => {
+      console.log(data)
       let returnedUserData = data.data
       dispatch(signInUser(returnedUserData))
     })
@@ -98,14 +94,10 @@ export const signInRequest = user => {
   
 export const signOutRequest = () => {
   return dispatch => {
-    //let userSignInData = {"email": user.email, "password": user.password}
     return fetch(`${BASE_URL}/auth/sign_out`, {
       method: "DELETE",
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   Accept: 'application/json',
-      // },
-      //body: JSON.stringify(userSignInData)
+      headers: JSON.parse(sessionStorage.user)
+      
     })
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -115,9 +107,9 @@ export const signOutRequest = () => {
       }
     })
     .then(data => {
-      console.log(data)
-      // let returnedUserData = data.data
-      // dispatch(signInUser(returnedUserData))
+      console.log("Please label this:", data.success)
+      // maybe something - if success?
+      dispatch(signOutUser())
     })
     .catch(error => {
       console.log("Error Catch :", error.message)
