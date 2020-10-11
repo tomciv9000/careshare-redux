@@ -20,7 +20,7 @@ class NavigationBar extends Component {
           Account: {this.props.currentUser.email}
         </Navbar.Text>
         <LinkContainer to="/">
-        <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
+          <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
         </LinkContainer>
       </Nav>
     )

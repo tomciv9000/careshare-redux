@@ -108,11 +108,11 @@ export const signOutRequest = () => {
     })
     .then(data => {
       console.log("Please label this:", data.success)
-      // maybe something - if success?
+      sessionStorage.removeItem("user")
       dispatch(signOutUser())
     })
     .catch(error => {
-      console.log("Error Catch :", error.message)
+      console.log("SignOut Fail Error:", error.message)
         // dispatch(signInFail(error.message))
         // return undefined
     })
