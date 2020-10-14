@@ -21,11 +21,9 @@ const validate = values => {
     errors.sex = 'Required';
   } 
 
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
+  if (!values.birthdate) {
+    errors.birthdate = 'Required';
+  } 
 
   return errors;
 };
@@ -37,6 +35,7 @@ const AddChildForm = () => {
       sex: "",
       birthdate: "",
     },
+    validate,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2))
     }
@@ -52,16 +51,18 @@ const AddChildForm = () => {
             type="text"
             name="name"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.name}
           />
         </Form.Group>
-
+        {formik.errors.name && formik.touched.name ? <div>{formik.errors.name}</div> : null}
         <Form.Group controlId="formSex">
           <Form.Label>Sex</Form.Label>
           <Form.Control 
             as="select" 
             name="sex"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.sex}
           >
             <option disabled value="">Please Select</option>
@@ -69,17 +70,18 @@ const AddChildForm = () => {
             <option value="F">Female</option>
           </Form.Control>
         </Form.Group>
-
+        {formik.errors.sex && formik.touched.sex? <div>{formik.errors.sex}</div> : null}
         <Form.Group controlId="childBirthdate">
           <Form.Label>Select Birthdate</Form.Label>
           <Form.Control 
             type="date"
             name="birthdate"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.birthdate}
           />
         </Form.Group>
-
+        {formik.errors.birthdate && formik.touched.birthdate? <div>{formik.errors.birthdate}</div> : null}
         <Button variant="primary" type="submit">
           Submit
         </Button>
