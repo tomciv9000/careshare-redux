@@ -1,0 +1,37 @@
+@media all and (min-width: 480px) {
+  .childform {
+    padding: 60px 0;
+  }
+
+  .childform form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+@media all and (max-width: 479px) {
+  .childform {
+    padding: 60px 0;
+  }
+
+  .childform form {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+}
+
+.white-text{
+color: white;
+}
+
+#add-child{
+text-align: center;
+}
+
+#user-signin{
+text-align: center;
+}
+
+.error-msg{
+color: red;
+}
