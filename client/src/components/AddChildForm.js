@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 //import { useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -9,24 +10,7 @@ import Button from 'react-bootstrap/Button'
 
 import "../app.css";
 
-const validate = values => {
-  const errors = {};
-  if (!values.name) {
-    errors.name = 'Required';
-  } else if (values.name.length > 15) {
-    errors.name = 'Must be 15 characters or less';
-  }
-
-  if (!values.sex) {
-    errors.sex = 'Required';
-  } 
-
-  if (!values.birthdate) {
-    errors.birthdate = 'Required';
-  } 
-
-  return errors;
-};
+const today = new Date();
 
 const AddChildForm = () => {
   const formik = useFormik({
@@ -35,7 +19,17 @@ const AddChildForm = () => {
       sex: "",
       birthdate: "",
     },
-    validate,
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .max(15, 'Must be 70 characters or less')
+        .required('Required'),
+      sex: Yup.string()
+        .matches(/[mfMF]/)
+        .required('Required'),
+      birthdate: Yup.date()
+        .max(today, 'Cannot be a future date')
+        .required('Required'),
+    }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2))
     }
