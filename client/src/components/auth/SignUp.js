@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Yup from 'yup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import {signUpRequest} from '../../actions/userActions';
