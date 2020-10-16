@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import styled from 'styled-components';
+
 //import { useSelector } from 'react-redux'
 import { Form, Button, Container } from 'react-bootstrap';
 
@@ -9,7 +9,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 //import {signInRequest} from '../../actions/userActions';
 //import { useDispatch } from 'react-redux';
 
-import { TestForm, Title } from "./theme.js";
+
 
 
 const today = new Date();
@@ -49,12 +49,13 @@ const AddChildForm = () => {
     {( {values,
           errors,
           touched,
+          isValid,
           handleChange,
           handleBlur,
           handleSubmit,
           isSubmitting }) => (
-        <TestForm onSubmit={handleSubmit} >
-          <Title>Register Child</Title>
+        <Form noValidate onSubmit={handleSubmit} >
+          <h3>Register Child</h3>
           {console.log(values)}
           <Form.Group controlId="formName">
             <Form.Label>Name :</Form.Label>
@@ -64,11 +65,12 @@ const AddChildForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.name}
-            className={touched.name && errors.name ? "error" : null}
+            isInvalid={touched.name && !!errors.name}
           />
-          {touched.name && errors.name ? (
-                <div className="error-message">{errors.name}</div>
-              ): null}
+          <Form.Control.Feedback type="invalid">
+                  {errors.name}
+          </Form.Control.Feedback>
+          
         </Form.Group>
         
         <Form.Group controlId="formSex">
@@ -79,15 +81,15 @@ const AddChildForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.sex}
-            className={touched.sex && errors.sex ? "error" : null}
+            isInvalid={touched.sex && !!errors.sex}
           >
             <option disabled value="">Please Select</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
           </Form.Control>
-          {touched.sex && errors.sex ? (
-                <div className="error-message">{errors.sex}</div>
-              ): null}
+          <Form.Control.Feedback type="invalid">
+            {errors.sex}
+          </Form.Control.Feedback>
         </Form.Group>
         
         <Form.Group controlId="childBirthdate">
@@ -98,17 +100,17 @@ const AddChildForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.birthdate}
-            className={touched.birthdate && errors.birthdate ? "error" : null}
+            isInvalid={touched.birthdate && !!errors.birthdate}
           />
-          {touched.birthdate && errors.birthdate ? (
-                <div className="error-message">{errors.birthdate}</div>
-              ): null}
+          <Form.Control.Feedback type="invalid">
+            {errors.birthdate}
+          </Form.Control.Feedback>
         </Form.Group>
         
         <Button type="submit" disabled={isSubmitting}>
             Submit
         </Button>
-      </TestForm>
+      </Form>
   )}
   </Formik>
   </Container>
