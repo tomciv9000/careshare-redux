@@ -6,7 +6,7 @@ import usersReducer from './reducers/usersReducer';
 
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import './index.css';
+//import './index.css';
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css';
 

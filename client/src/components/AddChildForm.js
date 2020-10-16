@@ -3,79 +3,17 @@ import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 //import { useSelector } from 'react-redux'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 
 //import Alert from 'react-bootstrap/Alert'
 //import {signInRequest} from '../../actions/userActions';
 //import { useDispatch } from 'react-redux';
 
-//import "../app.css";
-// Styled-components styles
+import { TestForm, Title } from "./theme.js";
+
 
 const today = new Date();
-const CONTAINER = styled.div`
-  background: #F7F9FA;
-  height: auto;
-  width: 90%;
-  margin: 5em auto;
-  color: snow;
-  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
 
-  @media(min-width: 786px) {
-    width: 60%;
-  }
-
-  label {
-    color: #24B9B6;
-    font-size: 1.2em;
-    font-weight: 400;
-  }
-
-  h1 {
-    color: #24B9B6;
-    padding-top: .5em;
-  }
-
-  .form-group {
-    margin-bottom: 2.5em;
-  }
-
-  .error {
-    border: 2px solid #FF6565;
-  }
-
-  .error-message {
-    color: #FF6565;
-    padding: .5em .2em;
-    height: 1em;
-    position: absolute;
-    font-size: .8em;
-  }
-`;
-
-const MYFORM = styled(Form)`
-  width: 90%;
-  text-align: left;
-  padding-top: 2em;
-  padding-bottom: 2em;
-
-  @media(min-width: 786px) {
-    width: 50%;
-  }
-`;
-
-const BUTTON = styled(Button)`
-  background: #1863AB;
-  border: none;
-  font-size: 1.2em;
-  font-weight: 400;
-
-  &:hover {
-    background: #1D3461;
-  }
-`;
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -93,7 +31,8 @@ const validationSchema = Yup.object().shape({
 
 const AddChildForm = () => {
   return (
-    <CONTAINER>
+    <Container>
+      
     <Formik
       initialValues={{ name:"", sex:"", birthdate:""}}
       validationSchema={validationSchema}
@@ -114,7 +53,8 @@ const AddChildForm = () => {
           handleBlur,
           handleSubmit,
           isSubmitting }) => (
-        <MYFORM onSubmit={handleSubmit} className="mx-auto">
+        <TestForm onSubmit={handleSubmit} >
+          <Title>Register Child</Title>
           {console.log(values)}
           <Form.Group controlId="formName">
             <Form.Label>Name :</Form.Label>
@@ -165,13 +105,13 @@ const AddChildForm = () => {
               ): null}
         </Form.Group>
         
-        <BUTTON variant="primary" type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
             Submit
-        </BUTTON>
-      </MYFORM>
+        </Button>
+      </TestForm>
   )}
   </Formik>
-  </CONTAINER>
+  </Container>
   )
 }
 
