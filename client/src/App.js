@@ -12,7 +12,7 @@ import { LandingPage } from './components/LandingPage';
 import AuthRoute from './components/auth/AuthRoute';
 //import PlaceShow from './components/PlaceShow'
 //import SpotShow from './components/SpotShow'
-
+import './app.css';
 
 const App = () => {
   const dispatch = useDispatch();

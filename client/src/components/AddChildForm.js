@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 //import { useSelector } from 'react-redux'
@@ -8,12 +8,8 @@ import { Form, Button, Container } from 'react-bootstrap';
 //import Alert from 'react-bootstrap/Alert'
 //import {signInRequest} from '../../actions/userActions';
 //import { useDispatch } from 'react-redux';
-
-
-
-
 const today = new Date();
-
+//CREATE AN ADD CHILD ACTION TO DISPATCH
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,18 +27,18 @@ const validationSchema = Yup.object().shape({
 
 const AddChildForm = () => {
   return (
-    <Container>
+    <Container className="childform">
       
     <Formik
       initialValues={{ name:"", sex:"", birthdate:""}}
       validationSchema={validationSchema}
       onSubmit={(values, {setSubmitting, resetForm}) => {
         setSubmitting(true);
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+        
+        console.log(JSON.stringify(values));
           resetForm();
           setSubmitting(false);
-        }, 500);
+        
       }}
     >
     
@@ -55,8 +51,8 @@ const AddChildForm = () => {
           handleSubmit,
           isSubmitting }) => (
         <Form noValidate onSubmit={handleSubmit} >
-          <h3>Register Child</h3>
-          {console.log(values)}
+          <h3 id="add-child">Register Child</h3>
+          
           <Form.Group controlId="formName">
             <Form.Label>Name :</Form.Label>
           <Form.Control 
@@ -107,7 +103,7 @@ const AddChildForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         
-        <Button type="submit" disabled={isSubmitting}>
+        <Button block size="large" type="submit" disabled={isSubmitting}>
             Submit
         </Button>
       </Form>
