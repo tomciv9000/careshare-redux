@@ -74,6 +74,7 @@ export const signInRequest = user => {
       body: JSON.stringify(userSignInData)
     })
     .then((response) => {
+     
       if (response.status >= 200 && response.status <= 299) {
         sessionStorage.setItem('user',
         JSON.stringify({
