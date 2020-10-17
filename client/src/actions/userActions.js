@@ -29,27 +29,37 @@ export const signUpRequest = user => {
   }
 }
 
-const signInNewUser = user => {
+const signInNewUser = async user => {
   let userSignInData = {
     "email": user.email,
     "password": user.password
   } 
-  return fetch(`${BASE_URL}/auth/sign_in`, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(userSignInData)
-  })
-  .then((response) => {
-    if (response.status >= 200 && response.status <= 299) {
-      return response.json();
+  try {
+    const response = await fetch(`${BASE_URL}/auth/sign_in`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(userSignInData)
+    })
+    if (response.ok) {
+      sessionStorage.setItem('user',
+        JSON.stringify({
+          'access-token': response.headers.get("access-token"),
+          client: response.headers.get("client"),
+          uid: response.headers.get("uid"),
+        }))
+      // console.log(response.headers.get("uid"))
+      // console.log(response.headers.get("access-token"))
+      // console.log(response.headers.get("client"))
+      return response.json()
     } else {
-      throw Error(response.statusText);
+      throw Error(response.statusText)
     }
-  })
- .catch(error => console.error("New User SignIn Error:",error));
+  } catch (error) {
+    return console.error("New User SignIn Error:", error)
+  }
 }
 
 export const signInRequest = user => {
@@ -71,9 +81,6 @@ export const signInRequest = user => {
                  client: response.headers.get("client"),
                  uid: response.headers.get("uid"), 
                }));
-        // console.log(response.headers.get("uid"))
-        // console.log(response.headers.get("access-token"))
-        // console.log(response.headers.get("client"))
         return response.json();
       } else {
         throw Error(response.statusText);
@@ -163,3 +170,33 @@ export const signOutUser = () => ({
 // export const noAuth = () => ({
 //   type: 'NOAUTH_USER'
 // })
+
+
+
+
+// async function fetchMoviesBadStatus() {
+//   const response = await fetch('/oops');
+
+//   if (!response.ok) {
+//     const message = `An error has occured: ${response.status}`;
+//     throw new Error(message);
+//   }
+
+//   const movies = await response.json();
+//   return movies;
+// }
+
+// fetchMoviesBadStatus().catch(error => {
+//   error.message; // 'An error has occurred: 404'
+// });
+// export const getSpeakers = () => async (dispatch, getState) => {
+//   try {
+//     const response = await fetch(`${API_SERVER}/speakers`);
+//     const speakers = await response.json();
+//     console.log("speakers success", speakers);
+//     dispatch(saveSpeakers(speakers));
+//   } catch (error) {
+//     console.log("throwing Error", error);
+//     throw error;
+//   }
+// };
