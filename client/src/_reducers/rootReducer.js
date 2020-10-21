@@ -7,7 +7,7 @@ import {authentication} from './authentication.reducer';
 const rootReducer = combineReducers({
       user: user,
       alert: alert,
-      registion: registration,
+      registration: registration,
       authentication: authentication
 
 });
