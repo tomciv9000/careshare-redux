@@ -1,5 +1,6 @@
+import { authHeader } from '../_helpers/auth-header';
 const BASE_URL = "http://localhost:3000/api/v1"
-import { authHeader } from '../_helpers';
+
 
 export const userService = {
     login,
@@ -23,9 +24,9 @@ function login(username, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify({
-              'access-token': response.headers.get("access-token"),
-                       client: response.headers.get("client"),
-                       uid: response.headers.get("uid"), 
+              'access-token': user.headers.get("access-token"),
+                       client: user.headers.get("client"),
+                       uid: user.headers.get("uid"), 
                      }));
 
             return user;
@@ -43,7 +44,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+    return fetch(`${BASE_URL}/users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -52,7 +53,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${BASE_URL}/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
@@ -72,7 +73,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`${BASE_URL}/users/${user.id}`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -82,7 +83,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${BASE_URL}/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
