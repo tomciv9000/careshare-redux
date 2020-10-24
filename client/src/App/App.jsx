@@ -20,11 +20,11 @@ export const App = () => {
     
     const clearAlerts = dispatch(alertActions.clear)
     
-    useEffect(() => {
-         history.listen(() => {
-             clearAlerts()
-         })
-     }, [])
+    history.listen((location, action) => {
+     // clear alert on location change
+      dispatch(alertActions.clear)
+    });
+    
 
     return (
         <Jumbotron>

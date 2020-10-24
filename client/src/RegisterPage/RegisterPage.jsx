@@ -1,7 +1,8 @@
-// import React from 'react';
+
 import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Button, Container } from 'react-bootstrap';
@@ -20,6 +21,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export const RegisterPage = () => {
+    const registering = useSelector(state => state.registration)
+    const dispatch = useDispatch()
+    const register = dispatch(userActions.register)
+
     return (
         <Container>
             <Formik
