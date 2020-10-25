@@ -1,7 +1,4 @@
-
-import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -22,10 +19,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export const RegisterPage = () => {
-    const registering = useSelector(state => state.registration)
+    
     const dispatch = useDispatch()
     const register = userActions.register
-    console.log(registering)
+    
     return (
         <Container>
             <Formik
@@ -45,6 +42,7 @@ export const RegisterPage = () => {
             {( {values,
                 errors,
                 touched,
+                isValid,
                 handleChange,
                 handleBlur,
                 handleSubmit,
@@ -92,7 +90,12 @@ export const RegisterPage = () => {
                                 {errors.passwordConfirm}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Button  type="submit" disabled={isSubmitting}>
+                        <Button  
+                            type="submit" 
+                            disabled={ 
+                                isSubmitting || 
+                                !isValid 
+                            }>
                         Submit
                         </Button>
                     </Form>
