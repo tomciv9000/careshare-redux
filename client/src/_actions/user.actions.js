@@ -1,7 +1,7 @@
-import { userConstants } from '../_constants/user.constants';
-import { userService } from '../_services/user.service';
-import { alertActions } from './alert.actions';
-import { history } from '../_helpers/history';
+import { userConstants } from "../_constants/user.constants";
+import { userService } from "../_services/user.service";
+import { alertActions } from "./alert.actions";
+import { history } from "../_helpers/history";
 
 export const userActions = {
     login,
@@ -19,7 +19,7 @@ function login(email, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/');
+                    history.push("/");
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -52,8 +52,8 @@ function register(user) {
             .then(
                 deviseUserObj => { 
                     dispatch(success());
-                    history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
+                    history.push("/login");
+                    dispatch(alertActions.success("Registration successful"));
                 },
                 error => {
                     dispatch(failure(error.toString()));

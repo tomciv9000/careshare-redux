@@ -1,30 +1,31 @@
 
-import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+// import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { Form, Button, Container } from 'react-bootstrap';
-import { userActions } from '../_actions/user.actions';
+import { useDispatch, useSelector } from "react-redux";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { Form, Button, Container } from "react-bootstrap";
+import { userActions } from "../_actions/user.actions";
 
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
-        .email()
+        .email("Please enter a valid email address.")
         .required("Required"),
     password: Yup.string()
-        .required('Password is required')
-        .min(8, 'Password is too short - should be 8 chars minimum.'),
+        .required("Required")
+        .min(8, "Password is too short - should be 8 chars minimum."),
     passwordConfirm: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required("Required")
+        .oneOf([Yup.ref("password"), null], "Passwords must match.")
 });
 
 export const RegisterPage = () => {
     const registering = useSelector(state => state.registration)
     const dispatch = useDispatch()
     const register = userActions.register
-
+    console.log(registering)
     return (
         <Container>
             <Formik
@@ -44,62 +45,58 @@ export const RegisterPage = () => {
             {( {values,
                 errors,
                 touched,
-                isValid,
                 handleChange,
                 handleBlur,
                 handleSubmit,
                 isSubmitting }) => (
-            <Form noValidate onSubmit={handleSubmit} >
-                <h3>Register</h3>
-                <Form.Group controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        name="email"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                        isInvalid={touched.email && !!errors.email}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.name}
-                    </Form.Control.Feedback>
-                </Form.Group>
+                    <Form noValidate onSubmit={handleSubmit}>
+                        <h3>Register</h3>
+                        <Form.Group controlId="formEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                name="email"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.email}
+                                isInvalid={touched.email && !!errors.email} />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.email}
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                        isInvalid={touched.password && !!errors.password}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.password}
-                    </Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group controlId="formPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                name="password"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.password}
+                                isInvalid={touched.password && !!errors.password} />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.password}
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group controlId="formPasswordConfirm">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        name="passwordConfirm"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.passwordConfirm}
-                        isInvalid={touched.passwordConfirm && !!errors.passwordConfirm}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors.passwordConfirm}
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Button block size="large" type="submit" disabled={isSubmitting}>
-                    Submit
-                </Button>
-            </Form>
-    )}
+                        <Form.Group controlId="formPasswordConfirm">
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                name="passwordConfirm"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.passwordConfirm}
+                                isInvalid={touched.passwordConfirm && !!errors.passwordConfirm} />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.passwordConfirm}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Button  type="submit" disabled={isSubmitting}>
+                        Submit
+                        </Button>
+                    </Form>
+                )}
             </Formik>
         </Container>
     )
@@ -111,10 +108,10 @@ export const RegisterPage = () => {
 
 //         this.state = {
 //             user: {
-//                 firstName: '',
-//                 lastName: '',
-//                 email: '',
-//                 password: ''
+//                 firstName: "",
+//                 lastName: "",
+//                 email: "",
+//                 password: ""
 //             },
 //             submitted: false
 //         };
@@ -151,28 +148,28 @@ export const RegisterPage = () => {
 //             <div className="col-md-6 col-md-offset-3">
 //                 <h2>Register</h2>
 //                 <form name="form" onSubmit={this.handleSubmit}>
-//                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
+//                     <div className={"form-group" + (submitted && !user.firstName ? " has-error" : "")}>
 //                         <label htmlFor="firstName">First Name</label>
 //                         <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
 //                         {submitted && !user.firstName &&
 //                             <div className="help-block">First Name is required</div>
 //                         }
 //                     </div>
-//                     <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+//                     <div className={"form-group" + (submitted && !user.lastName ? " has-error" : "")}>
 //                         <label htmlFor="lastName">Last Name</label>
 //                         <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
 //                         {submitted && !user.lastName &&
 //                             <div className="help-block">Last Name is required</div>
 //                         }
 //                     </div>
-//                     <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
+//                     <div className={"form-group" + (submitted && !user.username ? " has-error" : "")}>
 //                         <label htmlFor="email">Email</label>
 //                         <input type="text" className="form-control" name="username" value={user.username} onChange={this.handleChange} />
 //                         {submitted && !user.username &&
 //                             <div className="help-block">Username is required</div>
 //                         }
 //                     </div>
-//                     <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+//                     <div className={"form-group" + (submitted && !user.password ? " has-error" : "")}>
 //                         <label htmlFor="password">Password</label>
 //                         <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
 //                         {submitted && !user.password &&
