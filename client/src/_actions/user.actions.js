@@ -39,12 +39,18 @@ function logout() {
 }
 
 function register(user) {
+    let deviseUserObj = {
+        "email": user.email,
+        "password": user.password,
+        "password_confirmation": user.passwordConfirm
+    }
+    console.log(deviseUserObj)
     return dispatch => {
         dispatch(request(user));
 
-        userService.register(user)
+        userService.register(deviseUserObj)
             .then(
-                user => { 
+                deviseUserObj => { 
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));

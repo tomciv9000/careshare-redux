@@ -16,14 +16,14 @@ const validationSchema = Yup.object().shape({
     password: Yup.string()
         .required('Password is required')
         .min(8, 'Password is too short - should be 8 chars minimum.'),
-    passwordConfirmation: Yup.string()
+    passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 export const RegisterPage = () => {
     const registering = useSelector(state => state.registration)
     const dispatch = useDispatch()
-    const register = dispatch(userActions.register)
+    const register = userActions.register
 
     return (
         <Container>
@@ -31,12 +31,12 @@ export const RegisterPage = () => {
                 initialValues={{ 
                     email:"", 
                     password:"", 
-                    passwordConfirmation:""}}
+                    passwordConfirm:""}}
                 validationSchema={validationSchema}
                 onSubmit={(values, {setSubmitting, resetForm}) => {
                     setSubmitting(true);
-
-                    console.log(JSON.stringify(values))
+                    dispatch(register(values))
+                    console.log(values)
                     resetForm()
                     setSubmitting(false)
                 }}
@@ -85,14 +85,14 @@ export const RegisterPage = () => {
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
                         type="password"
-                        name="passwordConfirmation"
+                        name="passwordConfirm"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.passwordConfirmation}
-                        isInvalid={touched.passwordConfirmation && !!errors.passwordConfirmation}
+                        value={values.passwordConfirm}
+                        isInvalid={touched.passwordConfirm && !!errors.passwordConfirm}
                     />
                     <Form.Control.Feedback type="invalid">
-                        {errors.passwordConfirmation}
+                        {errors.passwordConfirm}
                     </Form.Control.Feedback>
                 </Form.Group>
                 <Button block size="large" type="submit" disabled={isSubmitting}>
