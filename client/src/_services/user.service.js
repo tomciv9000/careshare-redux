@@ -12,7 +12,7 @@ export const userService = {
     delete: _delete
 };
 
-function login(user) {
+async function login(user) {
     let userSignInData = {
         "email": user.email, 
         "password": user.password
@@ -23,19 +23,16 @@ function login(user) {
         body: JSON.stringify(userSignInData)
     };
 
-    return fetch(`${BASE_URL}/auth/sign_in`, requestOptions)
-        .then(handleResponse)
-        .then(authUser => {
-            console.log(authUser.headers.get("access-token"))
-            //store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem("user", JSON.stringify({
-                "access-token": authUser.headers.get("access-token"),
-                "client": authUser.headers.get("client"),
-                "uid": authUser.headers.get("uid"), 
-            }));
-
-            return authUser;
-        });
+    const response = await fetch(`${BASE_URL}/auth/sign_in`, requestOptions);
+    const authUser = await handleResponse(response);
+    console.log(authUser.headers.get("access-token"));
+    //store user details and jwt token in local storage to keep user logged in between page refreshes
+    localStorage.setItem("user", JSON.stringify({
+        "access-token": authUser.headers.get("access-token"),
+        "client": authUser.headers.get("client"),
+        "uid": authUser.headers.get("uid"),
+    }));
+    return authUser;
 }
 
 function logout() {
@@ -61,14 +58,15 @@ function getById(id) {
     return fetch(`${BASE_URL}/users/${id}`, requestOptions).then(handleResponse);
 }
 
-function register(user) {
+async function register(user) {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
     };
 
-    return fetch(`${BASE_URL}/auth`, requestOptions).then(handleResponse);
+    const response = await fetch(`${BASE_URL}/auth`, requestOptions);
+    return handleResponse(response);
 }
 
 function update(user) {
