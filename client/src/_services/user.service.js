@@ -12,24 +12,29 @@ export const userService = {
     delete: _delete
 };
 
-function login(username, password) {
+function login(user) {
+    let userSignInData = {
+        "email": user.email, 
+        "password": user.password
+    }
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify(userSignInData)
     };
 
     return fetch(`${BASE_URL}/auth/sign_in`, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
+        .then(authUser => {
+            console.log(authUser.headers.get("access-token"))
+            //store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem("user", JSON.stringify({
-              "access-token": user.headers.get("access-token"),
-                       client: user.headers.get("client"),
-                       uid: user.headers.get("uid"), 
-                     }));
+                "access-token": authUser.headers.get("access-token"),
+                "client": authUser.headers.get("client"),
+                "uid": authUser.headers.get("uid"), 
+            }));
 
-            return user;
+            return authUser;
         });
 }
 
@@ -88,7 +93,14 @@ function _delete(id) {
 
 function handleResponse(response) {
     return response.text().then(text => {
-        const data = text && JSON.parse(text);
+        
+        const data = {
+            "user": text && JSON.parse(text),
+            "headers": response.headers
+        }
+
+        console.log(data)
+        
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
