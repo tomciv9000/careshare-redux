@@ -16,7 +16,7 @@ export const App = () => {
 
     const dispatch = useDispatch()
     const alert = useSelector(state => state.alert)
-    
+    console.log(alert)
     const clearAlerts = dispatch(alertActions.clear)
     
     history.listen((location, action) => {
@@ -29,7 +29,7 @@ export const App = () => {
         <Jumbotron>
             <Container>
                 {alert.message &&
-                <Alert variant="danger">{alert.message}</Alert>
+                <Alert variant={alert.type}>{alert.message}</Alert>
                 }
             <Router history={history}>
                 <Switch>
