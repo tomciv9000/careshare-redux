@@ -13,8 +13,7 @@ import { Container, Jumbotron, Row, Col, Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App = () => {
-    //const history = useHistory()
-   //const location = useLocation()
+
     const dispatch = useDispatch()
     const alert = useSelector(state => state.alert)
     
@@ -47,53 +46,3 @@ export const App = () => {
     
     
 }
-
-
-
-
-
-// class App extends Component {
-//     constructor(props) {
-//         super(props);
-
-//         history.listen((location, action) => {
-//             // clear alert on location change
-//             this.props.clearAlerts();
-//         });
-//     }
-
-//     render() {
-//         const { alert } = this.props;
-//         return (
-//             <div className="jumbotron">
-//                 <div className="container">
-//                     <div className="col-sm-8 col-sm-offset-2">
-//                         {alert.message &&
-//                             <div className={`alert ${alert.type}`}>{alert.message}</div>
-//                         }
-//                         <Router history={history}>
-//                             <Switch>
-//                                 <PrivateRoute exact path="/" component={HomePage} />
-//                                 <Route path="/login" component={LoginPage} />
-//                                 <Route path="/register" component={RegisterPage} />
-//                                 <Redirect from="*" to="/" />
-//                             </Switch>
-//                         </Router>
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-
-// function mapState(state) {
-//     const { alert } = state;
-//     return { alert };
-// }
-
-// const actionCreators = {
-//     clearAlerts: alertActions.clear
-// };
-
-// const connectedApp = connect(mapState, actionCreators)(App);
-// export { connectedApp as App };
