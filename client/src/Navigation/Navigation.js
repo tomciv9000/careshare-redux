@@ -8,7 +8,7 @@ import { LinkContainer } from "react-router-bootstrap"
 
 
 export const NavBar = () => {
-
+  const isLoggedIn = useSelector(state => state.authentication.loggedIn)
   const activeUser = useSelector(state => state.authentication.user)
   function handleNavClick() {
     console.log("clicked")
@@ -20,7 +20,7 @@ export const NavBar = () => {
   const userLinks = (
     <Nav>
       <Navbar.Text>
-        Account: {activeUser.uid}
+        {/* {!!activeUser ? `Account: ${activeUser.uid}` : "Guest"} */}
       </Navbar.Text>
       <LinkContainer to="/">
         <Nav.Link onClick={handleNavClick}>Log Out</Nav.Link>

@@ -17,7 +17,11 @@ function login(email, password) {
 
         userService.login(email, password)
             .then(
+                
                 user => { 
+                    let userData = user.user.data 
+                    console.log("userData: ", userData)
+                    
                     dispatch(success(user));
                     history.push("/");
                 },

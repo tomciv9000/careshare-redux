@@ -32,7 +32,9 @@ async function login(user) {
         "client": authUser.headers.get("client"),
         "uid": authUser.headers.get("uid"),
     }));
+    console.log("authUser:", authUser)
     return authUser;
+    
 }
 
 function logout() {
