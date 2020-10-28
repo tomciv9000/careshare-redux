@@ -1,17 +1,17 @@
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux'
-import { NavBar} from '../Navigation/Navigation'
-import { history } from '../_helpers/history';
-import { alertActions } from '../_actions/alert.actions';
-import { PrivateRoute } from '../_components/PrivateRoute';
-import { HomePage } from '../HomePage/HomePage';
-import { LoginPage } from '../LoginPage/LoginPage';
-import { RegisterPage } from '../RegisterPage/RegisterPage';
-import { Alert} from 'react-bootstrap'
-import '../login.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch, useSelector } from "react-redux"
+import { NavBar} from "../Navigation/Navigation"
+import { history } from "../_helpers/history";
+import { alertActions } from "../_actions/alert.actions";
+import { PrivateRoute } from "../_components/PrivateRoute";
+import { HomePage } from "../HomePage/HomePage";
+import { LoginPage } from "../LoginPage/LoginPage";
+import { RegisterPage } from "../RegisterPage/RegisterPage";
+import { Alert} from "react-bootstrap"
+import "../login.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
 

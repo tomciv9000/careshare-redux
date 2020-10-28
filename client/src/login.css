@@ -1,4 +1,5 @@
-body {
+#root {
+  background: darkslategray;
   background-color: darkslategray;
 }
 
