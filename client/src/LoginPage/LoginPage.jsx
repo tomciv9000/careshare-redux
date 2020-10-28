@@ -84,7 +84,7 @@ export const LoginPage = () => {
                         Submit
                         </Button>
                         <Form.Text className="text-muted">
-                        Need an account?<Link to="/register">Sign Up</Link>
+                        Need an account? <Link to="/register">Sign Up</Link>
                         </Form.Text>
                     </Form>
                 )}    
