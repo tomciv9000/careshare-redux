@@ -97,6 +97,9 @@ export const RegisterPage = () => {
                             }>
                         Submit
                         </Button>
+                        <Form.Text className="text-muted">
+                        Already have an account?<Link to="/register">Sign In</Link>
+                        </Form.Text>
                     </Form>
                 )}
             </Formik>
