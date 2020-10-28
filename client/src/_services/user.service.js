@@ -25,7 +25,7 @@ async function login(user) {
 
     const response = await fetch(`${BASE_URL}/auth/sign_in`, requestOptions);
     const authUser = await handleResponse(response);
-    console.log(authUser.headers.get("access-token"));
+
     //store user details and jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem("user", JSON.stringify({
         "access-token": authUser.headers.get("access-token"),
@@ -97,7 +97,7 @@ function handleResponse(response) {
             "headers": response.headers
         }
 
-        console.log(data)
+        console.log("Handle Response Data:", data)
         
         if (!response.ok) {
             if (response.status === 401) {

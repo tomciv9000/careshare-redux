@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux'
-
+import { NavBar} from '../Navigation/Navigation'
 import { history } from '../_helpers/history';
 import { alertActions } from '../_actions/alert.actions';
 import { PrivateRoute } from '../_components/PrivateRoute';
@@ -25,12 +25,14 @@ export const App = () => {
     
 
     return (
-        <Jumbotron>
-            <Container>
+         
+            
+            <Router history={history}>
+                <NavBar />
+                
                 {alert.message &&
                 <Alert variant={alert.type}>{alert.message}</Alert>
                 }
-            <Router history={history}>
                 <Switch>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
@@ -39,8 +41,8 @@ export const App = () => {
                 </Switch>    
             </Router>    
 
-            </Container>
-        </Jumbotron>
+            
+        
     )
     
     

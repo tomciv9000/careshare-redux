@@ -20,6 +20,7 @@ export const LoginPage = () => {
     const logout = userActions.logout
 
     useEffect(() => {
+        console.log("logout exec...")
         logout()
     })
     return (
