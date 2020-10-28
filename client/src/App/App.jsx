@@ -9,7 +9,7 @@ import { PrivateRoute } from '../_components/PrivateRoute';
 import { HomePage } from '../HomePage/HomePage';
 import { LoginPage } from '../LoginPage/LoginPage';
 import { RegisterPage } from '../RegisterPage/RegisterPage';
-import { Container, Alert} from 'react-bootstrap'
+import { Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App = () => {
@@ -29,7 +29,6 @@ export const App = () => {
             
             <Router history={history}>
                 <NavBar />
-                {/* <Container> */}
                 {alert.message &&
                 <Alert variant={alert.type}>{alert.message}</Alert>
                 }
@@ -39,7 +38,6 @@ export const App = () => {
                 <Route path="/register" component={RegisterPage} />
                 <Redirect from="*" to="/" />
                 </Switch>
-            {/* </Container>     */}
             </Router>    
 
             
