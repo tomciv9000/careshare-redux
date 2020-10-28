@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom"
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Form, Button, Container } from "react-bootstrap";
@@ -82,9 +83,13 @@ export const LoginPage = () => {
                             }>
                         Submit
                         </Button>
+                        <Form.Text className="text-muted">
+                        Need an account?<Link to="/register">Sign Up</Link>
+                        </Form.Text>
                     </Form>
                 )}    
             </Formik>
+            
         </Container>
     )
 }

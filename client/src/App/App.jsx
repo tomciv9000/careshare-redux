@@ -29,7 +29,7 @@ export const App = () => {
             
             <Router history={history}>
                 <NavBar />
-                <Container>
+                {/* <Container> */}
                 {alert.message &&
                 <Alert variant={alert.type}>{alert.message}</Alert>
                 }
@@ -39,7 +39,7 @@ export const App = () => {
                 <Route path="/register" component={RegisterPage} />
                 <Redirect from="*" to="/" />
                 </Switch>
-            </Container>    
+            {/* </Container>     */}
             </Router>    
 
             
