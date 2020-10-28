@@ -10,8 +10,7 @@ import { HomePage } from "../HomePage/HomePage";
 import { LoginPage } from "../LoginPage/LoginPage";
 import { RegisterPage } from "../RegisterPage/RegisterPage";
 import { Alert} from "react-bootstrap"
-import "../login.css"
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export const App = () => {
 
