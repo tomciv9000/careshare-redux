@@ -24,7 +24,7 @@ export const RegisterPage = () => {
     const register = userActions.register
     
     return (
-        <Container className="Login">
+        <Container className="auth-form">
             <Formik
                 initialValues={{ 
                     email:"", 

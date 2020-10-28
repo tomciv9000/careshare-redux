@@ -24,7 +24,7 @@ export const LoginPage = () => {
         dispatch(logout())
     })
     return (
-        <Container>
+        <Container className="auth-form">
             <Formik
                 initialValues={{ 
                     email:"", 

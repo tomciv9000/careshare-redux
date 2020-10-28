@@ -1,36 +1,34 @@
+body {
+  background-color: darkslategray;
+}
+
+
+/* Form styling */
+
 @media all and (min-width: 480px) {
-    .Login {
+    .auth-form {
       padding: 60px 0;
+      text-align: center;
     }
   
-    .Login form {
+    .auth-form form {
       margin: 0 auto;
       max-width: 320px;
     }
 }
 
 @media all and (max-width: 479px) {
-    .Login {
+    .auth-form {
       padding: 60px 0;
+      text-align: center;
     }
   
-    .Login form {
+    .auth-form form {
       margin: 0 auto;
       max-width: 300px;
     }
 }
 
-.white-text{
-  color: white;
-}
-
-#account-login{
-  text-align: center;
-}
-
-#user-signin{
-  text-align: center;
-}
 
 .error-msg{
   color: red;
