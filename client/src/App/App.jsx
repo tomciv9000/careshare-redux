@@ -18,9 +18,10 @@ export const App = () => {
     const alert = useSelector(state => state.alert)
     
     
-    history.listen((location, action) => {
+    history.listen((action) => {
+        console.log("history changed, alerts should be cleared")
      // clear alert on location change
-      dispatch(alertActions.clear)
+      dispatch(alertActions.clear())
     });
     
 
