@@ -99,16 +99,21 @@ function handleResponse(response) {
             "headers": response.headers
         }
 
-        console.log("Handle Response Data:", data)
         
+        if (data.user.status === "error"){
+            let errorMessages = data.user.errors.full_messages
+            console.log(errorMessages)
+        }
+
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
                 //location.reload(true);
             }
-
-            const error = (data && data.message) || response.statusText;
+            
+            const error = (data && data.user.errors.full_messages) || response.statusText;
+            console.log("Error response:", error)
             return Promise.reject(error);
         }
 
