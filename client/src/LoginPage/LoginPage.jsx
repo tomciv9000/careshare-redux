@@ -21,7 +21,7 @@ export const LoginPage = () => {
     const logout = userActions.logout
 
     useEffect(() => {
-        dispatch(logout())
+        //dispatch(logout())
     })
     return (
         <Container className="auth-form">
