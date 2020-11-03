@@ -38,6 +38,7 @@ async function login(user) {
 }
 
 function logout() {
+    console.log("logout exec in user service")
     // remove user from local storage to log user out
     localStorage.removeItem("user");
 }

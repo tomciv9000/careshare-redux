@@ -1,18 +1,23 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { signOutRequest } from '../actions/userActions';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from "react-router-bootstrap"
-
+import { useDispatch } from "react-redux";
+import { userActions } from "../_actions/user.actions";
 
 
 export const NavBar = () => {
+  const dispatch = useDispatch()
+  const logout = userActions.logout
   const isLoggedIn = useSelector(state => state.authentication.loggedIn)
   const activeUser = useSelector(state => state.authentication.user)
-  function handleNavClick() {
-    console.log("clicked")
-    
+  
+  const handleNavClick = (event) => {
+    console.log("Nav Logout clicked")
+    event.preventDefault()
+    dispatch(logout())
   }
 
   console.log("activeuser", activeUser)

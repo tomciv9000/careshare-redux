@@ -34,9 +34,10 @@ export const App = () => {
                 <Alert variant={alert.type}>{alert.message}</Alert>
                 }
                 <Switch>
+                    <AuthRoute path="/welcome" type="guest" component={WelcomePage} />
                     <AuthRoute path="/login" type="guest" component={LoginPage} />
                     <AuthRoute path="/register" type="guest" component={RegisterPage} />
-                    <AuthRoute path="/welcome" type="guest" component={WelcomePage} />
+                    
                     <AuthRoute exact path="/" type="private" component={HomePage} />
                     
                     <Redirect from="*" to="/" />
