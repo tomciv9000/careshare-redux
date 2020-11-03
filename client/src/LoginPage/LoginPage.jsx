@@ -21,7 +21,8 @@ export const LoginPage = () => {
     const logout = userActions.logout
 
     useEffect(() => {
-        //dispatch(logout())
+        console.log("logout should exe")
+        dispatch(logout())
     })
     return (
         <Container className="auth-form">

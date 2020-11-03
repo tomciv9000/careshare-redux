@@ -1,20 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Redirect, Route } from "react-router-dom";
+// import React from "react";
+// import { connect } from "react-redux";
+// import { Redirect, Route } from "react-router-dom";
 
-const AuthRoute = props => {
-  const { isAuthenticated, type } = props;
+// const AuthRoute = props => {
+//   const { isAuthenticated, type } = props;
   
-  if (type === "guest" && isAuthenticated) return <Redirect to="/private" />;
-  else if (type === "private" && !isAuthenticated) return <Redirect to="/" />;
+//   if (type === "guest" && isAuthenticated) return <Redirect to="/private" />;
+//   else if (type === "private" && !isAuthenticated) return <Redirect to="/" />;
 
-  return <Route {...props} />;
-};
+//   return <Route {...props} />;
+// };
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.user.isAuthenticated
-  };
-}
+// const mapStateToProps = state => {
+//   return {
+//     isAuthenticated: state.user.isAuthenticated
+//   };
+// }
 
-export default connect(mapStateToProps)(AuthRoute);
+// export default connect(mapStateToProps)(AuthRoute);
