@@ -11,7 +11,7 @@ import { userActions } from "../_actions/user.actions";
 export const NavBar = () => {
   const dispatch = useDispatch()
   const logout = userActions.logout
-  const isLoggedIn = useSelector(state => state.authentication.loggedIn)
+  
   const activeUser = useSelector(state => state.authentication.user)
   
   const handleNavClick = (event) => {
