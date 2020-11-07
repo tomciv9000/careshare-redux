@@ -25,7 +25,7 @@ export const NavBar = () => {
   const userLinks = (
     <Nav>
       <Navbar.Text>
-        {/* {!!activeUser ? `Account: ${activeUser.uid}` : "Guest"} */}
+        {!!activeUser ? `Account: ${activeUser.uid}` : "Guest"} 
       </Navbar.Text>
       <LinkContainer to="/">
         <Nav.Link onClick={handleNavClick}>Log Out</Nav.Link>
