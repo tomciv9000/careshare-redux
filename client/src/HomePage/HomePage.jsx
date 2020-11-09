@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions/user.actions';
+//BOOKMARK - CONVET THIS TO A FUNCTIONAL COMPONENT AND ADD LOGOUT
 
-class HomePage extends React.Component {
+
+
+
+
+/* class HomePage extends React.Component {
     
     render() {
         const { user, users } = this.props;
@@ -33,4 +38,4 @@ const actionCreators = {
 }
 
 const connectedHomePage = connect(mapState, actionCreators)(HomePage);
-export { connectedHomePage as HomePage };
+export { connectedHomePage as HomePage }; */
