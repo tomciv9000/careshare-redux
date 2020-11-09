@@ -19,8 +19,6 @@ export const App = () => {
     const alert = useSelector(state => state.alert)
     
     history.listen((action) => {
-        console.log("history changed, alerts should be cleared")
-        //clear alert on location change
         dispatch(alertActions.clear())
     });
     
@@ -50,22 +48,3 @@ export const App = () => {
     
     
 }
-
-/* 
-        <AuthRoute path='/login' type='guest'>
-            <NewLogin />
-          </AuthRoute>
-
-          <AuthRoute path='/signup' type='guest'>
-            <Signup />
-          </AuthRoute>
-
-          <AuthRoute path='/private' type='private'>
-            <Homepage />
-          </AuthRoute>
-
-          <AuthRoute path='/places/:id' type='private' component={PlaceShow} />
-
-          <AuthRoute path='/spots/:id' type='private' component={SpotShow} />
-
-          <AuthRoute path='/' type='guest'> */
