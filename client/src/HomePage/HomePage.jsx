@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../_actions/user.actions';
 //BOOKMARK - CONVET THIS TO A FUNCTIONAL COMPONENT AND ADD LOGOUT
 
-
+export const HomePage = () => {
+    return (
+        <div>
+            <h1>C a r e S h a r e</h1>
+            <h3>User Profile Page (Private)</h3>
+            <p>You're logged in with React!!</p>
+        </div>
+    )
+}
 
 
 
