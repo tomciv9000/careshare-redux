@@ -32,14 +32,12 @@ async function login(user) {
         "client": authUser.headers.get("client"),
         "uid": authUser.headers.get("uid"),
     }));
-    console.log("authUser:", authUser)
+    
     return authUser;
     
 }
 
 function logout() {
-    console.log("logout exec in user service")
-    // remove user from local storage to log user out
     localStorage.removeItem("user");
 }
 

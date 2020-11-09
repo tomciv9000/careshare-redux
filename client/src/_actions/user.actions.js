@@ -20,8 +20,6 @@ function login(email, password) {
                 
                 user => { 
                     let userData = user.user.data 
-                    console.log("userData: ", userData)
-                    
                     dispatch(success(user));
                     history.push("/");
                 },
@@ -48,7 +46,7 @@ function register(user) {
         "password": user.password,
         "password_confirmation": user.passwordConfirm
     }
-    console.log(deviseUserObj)
+    
     return dispatch => {
         dispatch(request(user));
 

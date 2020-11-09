@@ -21,7 +21,6 @@ export const LoginPage = () => {
     const logout = userActions.logout
 
     useEffect(() => {
-        console.log("logout should exe")
         dispatch(logout())
     })
     return (
