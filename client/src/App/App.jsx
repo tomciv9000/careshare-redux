@@ -9,6 +9,7 @@ import { HomePage } from "../HomePage/HomePage";
 import { WelcomePage } from "../WelcomePage/WelcomePage";
 import { LoginPage } from "../LoginPage/LoginPage";
 import { RegisterPage } from "../RegisterPage/RegisterPage";
+import { NewChildForm } from '../NewChildForm/NewChildForm' 
 import { Alert} from "react-bootstrap"
 
 
