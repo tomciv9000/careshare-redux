@@ -22,7 +22,7 @@ export const HomePage = () => {
             <h1>C a r e S h a r e</h1>
             <h3>User Profile Page (Private)</h3>
             <p>Hello, {activeUser.uid}!</p>
-            <Link to="/">
+            <Link to="/child/new">
                 <Button size="lg">Add Child</Button>
             </Link>
             <br/><br/>

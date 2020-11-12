@@ -33,7 +33,7 @@ export const App = () => {
               <AuthRoute path="/welcome" type="guest" component={WelcomePage} />
               <AuthRoute path="/login" type="guest" component={LoginPage} />
               <AuthRoute path="/register" type="guest" component={RegisterPage} />
-              
+              <AuthRoute path="/child/new" type="private" component={NewChildForm} />
               <AuthRoute exact path="/" type="private" component={HomePage} />
               
               <Redirect from="*" to="/" />
