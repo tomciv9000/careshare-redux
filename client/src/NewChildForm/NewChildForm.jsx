@@ -9,7 +9,7 @@ const today = new Date();
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .email("Please enter a valid email address.")
+    .max(30, 'Must be 70 characters or less')
     .required("Required"),
   birthdate: Yup.date()
     .max(today, 'Cannot be a future date')
