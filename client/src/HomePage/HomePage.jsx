@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NewChildForm } from '../NewChildForm/NewChildForm' 
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../_actions/user.actions';
 import Button from 'react-bootstrap/Button'

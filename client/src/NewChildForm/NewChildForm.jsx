@@ -30,6 +30,7 @@ export const NewChildForm = () => {
                 validationSchema={validationSchema}
                 onSubmit={(values, {setSubmitting, resetForm}) => {
                     setSubmitting(true);
+                    console.log(values)
                     //dispatch(register(values))
                     resetForm()
                     setSubmitting(false)
