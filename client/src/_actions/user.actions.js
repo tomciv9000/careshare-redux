@@ -52,7 +52,8 @@ function register(user) {
 
         userService.register(deviseUserObj)
             .then(
-                deviseUserObj => { 
+                returnedUserObj => { 
+                    console.log("Returned User Data from Devise:", returnedUserObj)
                     dispatch(success());
                     history.push("/login");
                     dispatch(alertActions.success("Registration successful"));
