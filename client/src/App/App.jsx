@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Router, Switch, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { NavBar} from "../Navigation/Navigation"
@@ -17,10 +17,14 @@ export const App = () => {
 
     const dispatch = useDispatch()
     const alert = useSelector(state => state.alert)
-    
-    history.listen((action) => {
-        dispatch(alertActions.clear())
-    });
+    useEffect(() => {
+        history.listen((action, location) => {
+            dispatch(alertActions.clear())
+        });
+    }, [dispatch]);
+    // history.listen((action) => {
+    //     dispatch(alertActions.clear())
+    // });
     
 
     return (

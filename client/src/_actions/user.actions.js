@@ -19,7 +19,7 @@ function login(email, password) {
             .then(
                 
                 user => { 
-                    let userData = user.user.data 
+                    
                     dispatch(success(user));
                     history.push("/");
                 },
