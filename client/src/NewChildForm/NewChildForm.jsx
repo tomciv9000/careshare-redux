@@ -18,8 +18,8 @@ const validationSchema = Yup.object().shape({
 
 export const NewChildForm = () => {
     
-    //const dispatch = useDispatch()
-    //const register = childActions.register
+    const dispatch = useDispatch()
+    const register = childActions.register
     
     return (
         <Container className="auth-form">
@@ -31,7 +31,7 @@ export const NewChildForm = () => {
                 onSubmit={(values, {setSubmitting, resetForm}) => {
                     setSubmitting(true);
                     console.log(values)
-                    //dispatch(register(values))
+                    dispatch(register(values))
                     resetForm()
                     setSubmitting(false)
                 }}

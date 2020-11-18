@@ -34,7 +34,7 @@ async function register(child) {
         headers: { ...authHeader(), "Content-Type": "application/json" },
         body: JSON.stringify(child)
     };
-
+    console.log(requestOptions)
     const response = await fetch(`${BASE_URL}/children`, requestOptions);
     return handleResponse(response);
 }
