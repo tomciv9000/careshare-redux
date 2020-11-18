@@ -35,7 +35,7 @@ async function register(child) {
         body: JSON.stringify(child)
     };
 
-    const response = await fetch(`${BASE_URL}/auth`, requestOptions);
+    const response = await fetch(`${BASE_URL}/children`, requestOptions);
     return handleResponse(response);
 }
 
@@ -75,9 +75,9 @@ function handleResponse(response) {
 
         if (!response.ok) {
             if (response.status === 401) {
-                console.log("Logout action was executed")
+                console.log("Not good")
                 // auto logout if 401 response returned from api
-                logout();
+                //logout();
                 //location.reload(true);
             }
             
